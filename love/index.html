@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Para mi Ayde 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-1: #040716;
+      --bg-2: #120622;
+      --accent-pink: #ff4f9a;
+      --accent-pink-soft: #ff9bc8;
+      --accent-purple: #a855f7;
+      --accent-cyan: #4de2ff;
+      --card-bg: rgba(8, 8, 24, 0.95);
+      --card-border: rgba(248, 250, 252, 0.12);
+      --text-main: #f9fafb;
+      --text-soft: #e5e7eb;
+      --text-muted: #9ca3af;
+      --shadow-neon-pink: 0 0 20px rgba(255, 79, 154, 0.9);
+      --shadow-neon-cyan: 0 0 18px rgba(77, 226, 255, 0.9);
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 0% 0%, #3b0764 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #022c44 0, transparent 60%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2));
+      min-height: 100vh;
+      scroll-behavior: smooth;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    main {
+      position: relative;
+      z-index: 2;
+    }
+
+    section {
+      min-height: 100vh;
+      padding: 6.5rem 1.2rem 5.8rem; /* espacio abajo para la barra inferior */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-inner {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    /* Fecha flotando */
+    .floating-date {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(3.4rem, 13vw, 6.2rem);
+      letter-spacing: 0.28em;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      padding-left: 0.4em;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.6),
+        rgba(255, 79, 154, 0.9),
+        rgba(168, 85, 247, 0.95),
+        rgba(77, 226, 255, 0.9)
+      );
+      -webkit-background-clip: text;
+      color: transparent;
+      opacity: 0.22;
+      animation: floatDate 14s ease-in-out infinite alternate;
+      text-align: center;
+      text-shadow:
+        0 0 20px rgba(255, 79, 154, 0.6),
+        0 0 22px rgba(77, 226, 255, 0.4);
+    }
+
+    @keyframes floatDate {
+      0% { transform: translateY(10px) scale(1); opacity: 0.2; }
+      100%{ transform: translateY(-12px) scale(1.04); opacity: 0.3; }
+    }
+
+    /* Corazones y rosas flotando */
+    .floating-love {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .float-item {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0.22;
+      animation: floatUp 20s linear infinite;
+    }
+
+    .float-item.heart {
+      color: #fb7185;
+      text-shadow: var(--shadow-neon-pink);
+    }
+
+    .float-item.rose {
+      color: #f97316;
+      text-shadow: 0 0 16px rgba(251, 146, 60, 0.9);
+    }
+
+    .float-item:nth-child(1) { left: 8%; bottom: -12%; animation-duration: 23s; }
+    .float-item:nth-child(2) { left: 25%; bottom: -14%; animation-duration: 19s; }
+    .float-item:nth-child(3) { left: 48%; bottom: -13%; animation-duration: 22s; }
+    .float-item:nth-child(4) { left: 70%; bottom: -15%; animation-duration: 20s; }
+    .float-item:nth-child(5) { left: 88%; bottom: -11%; animation-duration: 21s; }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0) translateX(0) scale(0.9); opacity: 0; }
+      20%  { opacity: 0.35; }
+      100% { transform: translateY(-120vh) translateX(-18px) scale(1.25); opacity: 0; }
+    }
+
+    /* Barra superior pequeña */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 25;
+      padding: 0.5rem 1.1rem;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .top-pill {
+      pointer-events: auto;
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      background: radial-gradient(circle at 0% 0%, rgba(251, 113, 133, 0.25), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(248, 250, 252, 0.15);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.95);
+      font-size: 0.74rem;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .top-pill span {
+      font-size: 0.95rem;
+    }
+
+    /* Barra inferior tipo app Android */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      padding: 0.4rem 0.9rem 0.7rem;
+      background: radial-gradient(circle at 50% -40%, rgba(248, 113, 133, 0.35), rgba(15, 23, 42, 0.95));
+      backdrop-filter: blur(18px);
+      border-top: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .nav-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.3rem;
+    }
+
+    .nav-btn {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.92);
+      padding: 0.45rem 0.25rem;
+      font-size: 0.68rem;
+      text-align: center;
+      color: #e5e7eb;
+      text-decoration: none;
+      font-weight: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15rem;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-btn span.icon {
+      font-size: 1rem;
+    }
+
+    .nav-btn--active {
+      background: radial-gradient(circle at 0% 0%, #ff4f9a, #a855f7);
+      color: #fdf2f8;
+      border-color: transparent;
+      box-shadow: var(--shadow-neon-pink), var(--shadow-neon-cyan);
+    }
+
+    /* Títulos de sección */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 1.7rem;
+    }
+
+    .section-pre {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(2.2rem, 5vw, 2.9rem);
+      color: var(--accent-pink-soft);
+      text-shadow: 0 0 14px rgba(251, 113, 133, 0.9);
+      margin-bottom: 0.3rem;
+    }
+
+    .section-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* Tarjetas generales */
+    .card {
+      background: var(--card-bg);
+      border-radius: 1.6rem;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95);
+      padding: 1.7rem 1.6rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(251, 113, 133, 0.26), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.3), transparent 60%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.75rem;
+      color: #e5e7eb;
+      margin-bottom: 0.7rem;
+    }
+
+    .card-tag span {
+      font-size: 0.95rem;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--text-soft);
+      text-align: justify;
+      white-space: pre-line;
+    }
+
+    /* Hero */
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+      gap: 1.7rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 880px) {
+      .hero-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-main {
+      border-radius: 1.8rem;
+      background: radial-gradient(circle at 0% 0%, rgba(251, 113, 133, 0.12), rgba(15, 23, 42, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.98);
+      padding: 1.9rem 1.6rem 2.1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-main::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(251, 113, 133, 0.3), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.35), transparent 55%);
+      opacity: 1;
+      mix-blend-mode: screen;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(248, 250, 252, 0.1);
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-chip span {
+      font-size: 1rem;
+    }
+
+    .hero-names {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-title {
+      font-family: "Great Vibes", cursive;
+      font-size: clamp(2.6rem, 7vw, 3.6rem);
+      color: var(--accent-pink-soft);
+      text-shadow: var(--shadow-neon-pink);
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-date-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      background: radial-gradient(circle at 0% 0%, rgba(251, 113, 133, 0.9), rgba(56, 189, 248, 0.9));
+      font-size: 0.8rem;
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: var(--shadow-neon-pink), var(--shadow-neon-cyan);
+      margin-bottom: 1rem;
+    }
+
+    .hero-text {
+      font-size: 0.9rem;
+      line-height: 1.9;
+      color: var(--text-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text span {
+      color: var(--accent-pink-soft);
+      font-weight: 500;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.8rem 1.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.2);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-soft);
+      font-size: 0.86rem;
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hero-btn.primary {
+      background: radial-gradient(circle at 0% 0%, #ff4f9a, #a855f7);
+      color: #fdf2f8;
+      box-shadow: var(--shadow-neon-pink), var(--shadow-neon-cyan);
+    }
+
+    .hero-btn span {
+      font-size: 1rem;
+    }
+
+    /* Lado derecho hero (foto + frase) */
+    .hero-side {
+      border-radius: 1.8rem;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(12, 10, 31, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.98);
+      padding: 1.7rem 1.5rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-side::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(251, 113, 133, 0.2), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(129, 140, 248, 0.3), transparent 55%);
+      opacity: 1;
+    }
+
+    .hero-side-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-photo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .hero-photo img {
+      width: 150px;
+      height: 150px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 3px solid var(--accent-pink-soft);
+      box-shadow: var(--shadow-neon-pink), 0 0 22px rgba(15, 23, 42, 0.9);
+      animation: softPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes softPulse {
+      0%, 100% { transform: scale(1); box-shadow: var(--shadow-neon-pink); }
+      50%      { transform: scale(1.03); box-shadow: var(--shadow-neon-pink), var(--shadow-neon-cyan); }
+    }
+
+    .hero-side-quote {
+      font-size: 0.88rem;
+      color: #e5e7eb;
+      line-height: 1.8;
+      text-align: center;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero-side-note {
+      font-size: 0.78rem;
+      color: #c7d2fe;
+      text-align: center;
+    }
+
+    /* Layout 2 columnas para secciones intermedias */
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 1.7rem;
+      align-items: stretch;
+    }
+
+    @media (max-width: 880px) {
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .side-card {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.95);
+      padding: 1.5rem 1.4rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .side-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(251, 113, 133, 0.2), transparent 60%);
+      opacity: 0.8;
+      mix-blend-mode: screen;
+    }
+
+    .side-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .side-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-pink-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .side-text {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      line-height: 1.9;
+      text-align: justify;
+      white-space: pre-line;
+    }
+
+    .side-tagline {
+      margin-top: 0.7rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* Imagen decorativa de sección (reemplaza src por tus fotos) */
+    .section-photo {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      border: 2px solid rgba(248, 113, 133, 0.55);
+      box-shadow: 0 22px 60px rgba(0, 0, 0, 0.98);
+    }
+
+    .section-photo img {
+      width: 100%;
+      height: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.2);
+    }
+
+    /* Lista de pequeños momentos */
+    .moments-list {
+      display: grid;
+      gap: 1.1rem;
+      margin-top: 0.6rem;
+    }
+
+    .moment-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.86rem;
+      color: var(--text-soft);
+    }
+
+    .moment-icon {
+      font-size: 1.1rem;
+      text-shadow: var(--shadow-neon-pink);
+    }
+
+    /* Sección promesa */
+    .promise-highlight {
+      font-size: 0.9rem;
+      color: var(--accent-pink-soft);
+      margin-top: 0.8rem;
+      text-align: center;
+    }
+
+    /* Frases con botón */
+    .phrases-box {
+      margin-top: 1.2rem;
+      border-radius: 1.7rem;
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      box-shadow:
+        0 0 22px rgba(129, 140, 248, 0.9),
+        0 24px 60px rgba(0, 0, 0, 0.98);
+      padding: 1.8rem 1.6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phrases-box::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(244, 114, 182, 0.4), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.4), transparent 60%);
+      opacity: 1;
+      mix-blend-mode: screen;
+    }
+
+    .phrases-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .phrases-heart {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      text-shadow: var(--shadow-neon-pink);
+    }
+
+    .phrase-text {
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: #f9fafb;
+      min-height: 3.6rem;
+    }
+
+    .phrase-counter {
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: #e0e7ff;
+    }
+
+    .btn-next-phrase {
+      margin-top: 1.4rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      padding: 0.85rem 2.2rem;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, #ff4f9a, #a855f7, #4de2ff);
+      color: #020617;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      box-shadow:
+        var(--shadow-neon-pink),
+        var(--shadow-neon-cyan),
+        0 16px 40px rgba(0, 0, 0, 0.98);
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn-next-phrase span {
+      font-size: 1.1rem;
+    }
+
+    .btn-next-phrase:active {
+      transform: translateY(2px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.98);
+    }
+
+    .phrase-text.fade {
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .phrase-text.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.2rem 1rem 4.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 2;
+    }
+
+    footer .mini-heart {
+      display: inline-block;
+      margin-left: 0.2rem;
+      animation: miniBeat 1.2s ease-in-out infinite;
+      text-shadow: var(--shadow-neon-pink);
+    }
+
+    @keyframes miniBeat {
+      0%, 100% { transform: scale(1); }
+      30%      { transform: scale(1.2); }
+      60%      { transform: scale(0.9); }
+    }
+
+    /* Animaciones de aparición */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Ajustes móvil */
+    @media (max-width: 640px) {
+      section {
+        padding: 6.1rem 1rem 5.6rem;
+      }
+
+      .hero-main,
+      .hero-side,
+      .card,
+      .side-card,
+      .phrases-box {
+        padding: 1.7rem 1.4rem 1.8rem;
+      }
+
+      .nav-inner {
+        gap: 0.25rem;
+      }
+
+      .nav-btn {
+        font-size: 0.64rem;
+        padding: 0.4rem 0.18rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra superior -->
+  <div class="top-bar">
+    <div class="top-pill">
+      <span>💘</span>
+      <span>Un rincóncito solo para nosotros dos o sea en el oscurito</span>
+    </div>
+  </div>
+
+  <!-- Fecha flotando -->
+  <div class="floating-date">06/07/25</div>
+
+  <!-- Corazones y rosas flotando -->
+  <div class="floating-love">
+    <div class="float-item heart">❤</div>
+    <div class="float-item rose">🌹</div>
+    <div class="float-item heart">❤</div>
+    <div class="float-item rose">🌹</div>
+    <div class="float-item heart">❤</div>
+  </div>
+
+  <!-- Navegación inferior tipo app -->
+  <nav class="bottom-nav">
+    <div class="nav-inner">
+      <a href="#inicio" class="nav-btn nav-btn--active" data-section="inicio">
+        <span class="icon">🏠</span>
+        <span>Inicio</span>
+      </a>
+      <a href="#antes" class="nav-btn" data-section="antes">
+        <span class="icon">🕰️</span>
+        <span>Antes de ti</span>
+      </a>
+      <a href="#porque" class="nav-btn" data-section="porque">
+        <span class="icon">💗</span>
+        <span>Por qué te elijo</span>
+      </a>
+      <a href="#distancia" class="nav-btn" data-section="distancia">
+        <span class="icon">🌍</span>
+        <span>Distancia</span>
+      </a>
+      <a href="#frases" class="nav-btn" data-section="frases">
+        <span class="icon">💬</span>
+        <span>Frasecitas</span>
+      </a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- INICIO -->
+    <section id="inicio">
+      <div class="section-inner reveal">
+        <div class="hero-layout">
+          <div class="hero-main">
+            <div class="hero-inner">
+              <div class="hero-chip">
+                <span>💕</span>
+                <span>Para mi esposita, mi amoshita, mi niña, mi bebé, mi pampañaupita</span>
+              </div>
+
+              <p class="hero-names">
+                De <strong>mi tu pampañaupita</strong> para <strong>mi esposita</strong>, con todo el amor del mundo. 💖
+              </p>
+
+              <h1 class="hero-title">Nuestro pequeño universo</h1>
+              <p class="hero-subtitle">
+                Una historia que empezó siendo amistad, se volvió conexión, y terminó
+                en algo que ni tú ni yo esperábamos… pero que ahora no cambiaría por nada.
+              </p>
+
+              <div class="hero-date-pill">
+                <span>📅</span>
+                <span>06/07/25 — El día en que mi amoshita me dijo que me amaba primero</span>
+              </div>
+
+              <p class="hero-text">
+                Antes de ti, mi corazón ya no buscaba nada. No confiaba, no quería
+                volver a intentar. Y de la nada, <span>apareciste tú</span>:
+                pendiente de mí, preguntándome si ya desayuné, si estoy bien,
+                si llegué sano, si comí, si dormí.  
+                Poco a poco, sin darme cuenta, me enamoré de tu sencillez, de tu forma de ser,
+                de tu corazón tan bonito.  
+                Tenía pensado pedirte que seas mi novia, pero me ganaste…
+                y fue una de las cosas más hermosas que me ha pasado.
+              </p>
+
+              <div class="hero-actions">
+                <a href="#antes" class="hero-btn primary">
+                  <span>💞</span>
+                  <span>Ver cómo era mi vida antes de ti</span>
+                </a>
+                <a href="#porque" class="hero-btn">
+                  <span>🌹</span>
+                  <span>Por qué te elijo todos los días</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-side">
+            <div class="hero-side-inner">
+              <!-- Reemplaza el src con una foto de ella o de ustedes: img/ayde.jpg -->
+              <div class="hero-photo">
+                <img src="mor.jpg" alt="Mi amoshita Ayde" />
+              </div>
+              <p class="hero-side-quote">
+                “No eres solo un mensaje en mi pantalla, mi pampañaupita.  
+                Eres la razón por la que mi corazón se ilusiona cada día,
+                aunque todavía no hayamos podido abrazarnos en persona.”
+              </p>
+              <p class="hero-side-note">
+                Te amo muchísimo, mi amoshita, mi pampañaupita.  
+                Estoy contando los días para verte, mirarte a los ojos y por fin abrazarte fuerte. 🤍
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANTES DE CONOCERTE -->
+    <section id="antes">
+      <div class="section-inner reveal">
+        <div class="section-heading">
+          <p class="section-pre">ANTES DE CONOCERTE</p>
+          <h2 class="section-title">Cuando el amor ya no estaba en mis planes</h2>
+          <p class="section-subtitle">
+            Antes de ti, esposita, yo ya había cerrado la puerta. Y justo ahí fue donde llegaste tú.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <div class="side-card">
+            <div class="side-inner">
+              <p class="side-title">Sin ganas de volver a intentar</p>
+              <p class="side-text">
+                Antes de conocerte, mi amor, yo no tenía planes de estar con nadie.  
+                No creía en las promesas, no confiaba, no quería volver a arriesgar mi corazón.
+                Simplemente ya no buscaba amor.  
+
+                Había días en los que pensaba que eso no era para mí, que mejor
+                seguir solo y ya. Menos problemas, menos decepciones, menos heridas.
+              </p>
+
+              <div class="side-tagline">
+                Y justo cuando ya no esperaba nada… apareciste tú, mi esposita. 💖
+              </div>
+            </div>
+          </div>
+
+          <!-- Reemplaza esta imagen por una tuya reflexivo, por ejemplo -->
+          <div class="section-photo">
+            <img src="fredy.jpg" alt="Antes de conocerte, pensando en nada de amor" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUANDO LLEGASTE TÚ -->
+    <section id="cuando-llegaste">
+      <div class="section-inner reveal">
+        <div class="section-heading">
+          <p class="section-pre">DESDE INICIOS DEL AÑO</p>
+          <h2 class="section-title">De amigos a algo que no vimos venir</h2>
+          <p class="section-subtitle">
+            Empezamos como dos personas hablando normal… y terminamos siendo dos corazones conectados.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <div class="section-photo">
+            <!-- Reemplaza por una foto dulce de ella o algo que te recuerde a sus chats -->
+            <img src="amohs.jpg" alt="Mensajes con Ayde" />
+          </div>
+
+          <div class="side-card">
+            <div class="side-inner">
+              <p class="side-title">Tu forma de cuidar sin darte cuenta</p>
+              <p class="side-text">
+                Empezamos a hablar casi desde inicios del año, como amigos, sin presión,
+                sin etiquetas, sin planes. Solo tú y yo, conversando.  
+
+                Pero poco a poco algo cambió.  
+                Tú siempre estabas pendiente:  
+                “¿Ya desayunaste?”,  
+                “¿Cómo estás?”,  
+                “¿Ya comiste?”,  
+                “Cuídate, por favor”.  
+
+                Y sin que tú lo supieras, con cada pregunta, con cada detalle,
+                mi corazón se iba acomodando a tu nombre.  
+                Empezó la conexión, esas ganas de contarte mi día, de esperar tu mensaje,
+                de que seas la primera persona a la que quiero escribirle.
+              </p>
+
+              <div class="moments-list">
+                <div class="moment-item">
+                  <div class="moment-icon">💬</div>
+                  <div>De chismecitos y risas, pasamos a contarnos cosas que no le contamos a cualquiera.</div>
+                </div>
+                <div class="moment-item">
+                  <div class="moment-icon">😊</div>
+                  <div>Me gustaba cómo te preocupabas por mí sin obligación, sin pedir nada a cambio.</div>
+                </div>
+                <div class="moment-item">
+                  <div class="moment-icon">💓</div>
+                  <div>Y así, sin aviso, un día me di cuenta: ya me habías enamorado, mi esposita.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06/07/25 EL DÍA QUE TODO CAMBIÓ -->
+    <section id="fecha">
+      <div class="section-inner reveal">
+        <div class="section-heading">
+          <p class="section-pre">06 / 07 / 25</p>
+          <h2 class="section-title">Cuando mi amoshita se me adelantó</h2>
+          <p class="section-subtitle">
+            Yo ya tenía pensado decirte que seas mi novia… pero tú me ganaste.  
+            Y fue perfecto así.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-tag">
+              <span>💌</span>
+              <span>El día que mi corazón sonrió más fuerte</span>
+            </div>
+            <p class="card-text">
+              Esa fecha no se me va a olvidar nunca: <strong>06/07/25</strong>.  
+              Ya veníamos hablando, ya sentía algo fuerte por ti, ya tenía en mente
+              decirte que si querías ser mi novia… pero tú, mi amoshita, te adelantaste.  
+
+              Ese día me declaraste tu amor, me dijiste lo que sentías, y no te imaginas
+              lo bonito que fue para mí. No solo porque me dijiste que me amabas,
+              sino porque sentí que el universo por fin me estaba regalando algo que
+              de verdad valía la pena.  
+
+              Tal vez tú pensabas: “Ojalá me diga que sí”.  
+              Y yo por dentro pensaba: “Por fin voy a poder decirle que también la amo”.  
+
+              No me molestó que me ganaras. Al contrario:
+              fue una de las cosas más especiales que me han pasado,  
+              porque ese día no solo empezó una relación…  
+              <span>ese día empezó una historia que quiero que dure para siempre.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- POR QUÉ TE ELIJO -->
+    <section id="porque">
+      <div class="section-inner reveal">
+        <div class="section-heading">
+          <p class="section-pre">POR QUÉ TE ELIJO</p>
+          <h2 class="section-title">Dos mundos diferentes que quieren encajar</h2>
+          <p class="section-subtitle">
+            Podríamos ser tan distintos… y aun así, mi corazón te sigue eligiendo a ti, mi ternurita.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <div class="side-card">
+            <div class="side-inner">
+              <p class="side-title">Te elijo por tu esencia</p>
+              <p class="side-text">
+                Te elijo porque con tu sencillez me enamoraste.  
+                Porque la calidad de persona que eres se nota en cada detalle,
+                en cada palabra, en cada gesto.  
+
+                Sé que somos dos mundos diferentes, con historias distintas,
+                maneras distintas de pensar, sentir, reaccionar…  
+                pero aun así, día a día, <span>elijo intentar encajar contigo</span>.  
+
+                Te elijo porque eres especial, porque eres real, porque no finges.
+                Porque eres mi esposita, mi amoshita, mi niña, mi bebé, mi pampañaupita.
+              </p>
+
+              <div class="side-tagline">
+                No eres perfecta, yo tampoco. Pero juntos, tenemos algo que vale la pena cuidar. 🤍
+              </div>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <div class="side-inner">
+              <p class="side-title">Te elijo incluso en la distancia</p>
+              <p class="side-text">
+                Te elijo aun cuando nunca nos hemos visto en persona.  
+                Te elijo aun cuando todo ha sido a través de una pantalla.  
+
+                Y aun así, lograste enamorarme.  
+                Porque nuestro amor a distancia no es cualquier cosa:
+                es para personas fuertes, para corazones que están dispuestos a esperar,
+                a confiar, a aguantar días de extrañarte mucho.  
+
+                Tenemos días de chismes, de risa, de molestarnos, de enojarnos un poquito,
+                de llorar, de hablar serio, de mandar notas de voz cortitas o re mil largas…  
+                y todo eso forma parte de lo nuestro.
+              </p>
+              <div class="side-tagline">
+                Aun siendo dos mundos tratando de encajar, yo sigo queriendo que sea contigo. 🌍💘
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUESTRO AMOR A DISTANCIA -->
+    <section id="distancia">
+      <div class="section-inner reveal">
+        <div class="section-heading">
+          <p class="section-pre">NUESTRO AMOR A DISTANCIA</p>
+          <h2 class="section-title">Pantallas, risas y ganas de abrazarte</h2>
+          <p class="section-subtitle">
+            Tal vez el mundo no entienda lo nuestro, pero yo sí sé lo que siento cuando hablo contigo.
+          </p>
+        </div>
+
+        <div class="two-col">
+          <div class="section-photo">
+            <!-- Reemplaza por algo que represente videollamadas o distancia -->
+            <img src="amor.jpg" alt="Nuestro amor a distancia" />
+          </div>
+
+          <div class="side-card">
+            <div class="side-inner">
+              <p class="side-title">Lo bonito y lo difícil… pero nuestro</p>
+              <p class="side-text">
+                La relación a distancia es una de las cosas más bonitas y, a la vez,
+                una de las más difíciles. No es fácil no poder abrazarte cuando quiero,
+                no poder verte cuando te extraño, no poder secarte las lágrimas en persona.  
+
+                Pero aun así, aquí seguimos:  
+                riendo, haciendo chismes, molestándonos,  
+                compartiendo tonterías, memes, historias,  
+                a veces llorando, a veces enojados,  
+                pero siempre buscando la forma de volver a estar bien.  
+
+                Porque aunque estemos lejos, tú y yo sabemos que esto es real.
+              </p>
+
+              <div class="moments-list">
+                <div class="moment-item">
+                  <div class="moment-icon">📱</div>
+                  <div>Llamadas donde se nos pasa el tiempo volando, aunque digamos “solo un ratito”.</div>
+                </div>
+                <div class="moment-item">
+                  <div class="moment-icon">😂</div>
+                  <div>Chismes, bromas internas y risas que solo tú y yo entendemos.</div>
+                </div>
+                <div class="moment-item">
+                  <div class="moment-icon">🥺</div>
+                  <div>Momentos de lágrimas, donde aun lejos, intentamos cuidarnos el corazón.</div>
+                </div>
+              </div>
+
+              <p class="promise-highlight">
+                Y en medio de todo eso, hay algo que no cambia:  
+                <strong>te amo y te estoy esperando con ansias para por fin abrazarte de verdad.</strong> 🤍
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LO QUE QUIERO CONTIGO (PROMESA) -->
+    <section id="promesa">
+      <div class="section-inner reveal">
+        <div class="section-heading">
+          <p class="section-pre">LO QUE QUIERO CONTIGO</p>
+          <h2 class="section-title">Mi promesa para ti, mi Amoshita</h2>
+          <p class="section-subtitle">
+            No te prometo perfección, pero sí te prometo seguir intentando… siempre contigo.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-inner">
+            <div class="card-tag">
+              <span>🌹</span>
+              <span>Lo que siento y lo que quiero que sepas</span>
+            </div>
+            <p class="card-text">
+              Mi esposita, mi amoshita, mi niña, mi bebé, mi pampañaupita…  
+              yo no estoy aquí por juego ni por pasar el rato.  
+
+              Estoy aquí porque de verdad te quiero en mi vida.  
+              Porque me ilusiona pensar en el día en que por fin pueda verte frente a mí,
+              abrazarte fuerte, mirar tus ojitos sin pantalla de por medio y decirte:
+              “Gracias por no rendirte con nosotros”.  
+
+              No te prometo que nunca nos vamos a molestar, ni que todo será perfecto,
+              porque somos dos mundos diferentes tratando de encajar.  
+              Pero sí te prometo esto:
+              seguir eligiéndote, seguir cuidando esto,  
+              seguir luchando por lo nuestro y seguir amándote así,  
+              con nervios, con miedo a veces, pero con muchas ganas de que funcione.  
+
+              Te amo muchísimo, amoshita.  
+              Y estoy esperando con ansias el día en que pueda llamarte
+              no solo mi novia a la distancia, sino mi realidad frente a mí,  
+              abrazada a mí, sin soltarme.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRASECITAS -->
+    <section id="frases">
+      <div class="section-inner reveal">
+        <div class="section-heading">
+          <p class="section-pre">FRASES PARA MI ESPOSITA</p>
+          <h2 class="section-title">Cositas que me nacen cuando pienso en ti</h2>
+          <p class="section-subtitle">
+            Toca el botón como si fuera un mensajito más que te mando desde mi corazón. 💌
+          </p>
+        </div>
+
+        <div class="phrases-box">
+          <div class="phrases-inner">
+            <div class="phrases-heart">💖🌹</div>
+            <p id="phraseText" class="phrase-text show">
+              Presiona el botón de abajo para ver la primera frase, mi esposita, mi amoshita. 💌
+            </p>
+            <p id="phraseCounter" class="phrase-counter">
+              Frase 0 de 30
+            </p>
+            <button id="nextPhraseBtn" class="btn-next-phrase">
+              <span>✨</span>
+              <span>Ver otra frase</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Hecho por Fredy o sea yo Muajajajaja, con paciencia, nervios y muchísimo amor<br>
+    solo para ti, mi esposita, mi amoshita, mi pampañaupita<span class="mini-heart">♥</span>
+  </footer>
+
+  <script>
+    // Navegación inferior: activar según sección
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const sections = document.querySelectorAll("section[id]");
+
+    function setActiveNav(id) {
+      navButtons.forEach(btn => {
+        const target = btn.getAttribute("data-section");
+        if (target === id) {
+          btn.classList.add("nav-btn--active");
+        } else {
+          btn.classList.remove("nav-btn--active");
+        }
+      });
+    }
+
+    // Click en botones de nav: scroll suave
+    navButtons.forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const sectionId = btn.getAttribute("data-section");
+        const target = document.getElementById(sectionId);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+          setActiveNav(sectionId);
+        }
+      });
+    });
+
+    // Observer para cambiar nav activo al hacer scroll
+    const observerOptions = { root: null, threshold: 0.55 };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          setActiveNav(id);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
+
+    // Animación de aparición (reveal)
+    const revealElements = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { root: null, threshold: 0.2 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // Frases cortas para Ayde
+    const frases = [
+      "Te pienso más de lo que te escribo, mi amoshita preciosa .",
+      "Tu nombre le gana a cualquier notificación en mi celular.",
+      "Mi lugar favorito siempre termina siendo donde estás tú, aunque sea por pantalla.",
+      "Eres mi mensaje bonito de todos los días, mi amoshita.",
+      "Aunque estés lejos, aquí sigues siendo mi hogar.",
+      "Mi día mejora automáticamente cuando sé de ti, mi niña.",
+      "A veces sonrío solo porque te recordé, mi bebé.",
+      "Lo que siento por ti no entiende de distancia.",
+      "Te extraño, pero también te vuelvo a elegir cada día.",
+      "Eres mi personita bonita en un mundo lleno de ruido.",
+      "Gracias por aparecer justo cuando ya no buscaba amor.",
+      "No eres perfecta, pero eres exactamente lo que quiero.",
+      "Contigo los problemas pesan menos, mi pampañaupita.",
+      "Amo cuando me cuentas tu día, aunque digas que es aburrido.",
+      "Mi corazón te reconoce incluso a kilómetros de distancia.",
+      "No hay nadie que me haga sentir lo que tú me haces sentir.",
+      "Me encanta cómo te preocupas por mí sin que te lo pida.",
+      "Si supieras lo mucho que me ilusionas, mi esposita.",
+      "Tu risa es uno de mis sonidos favoritos.",
+      "Si tengo que elegir mil veces, te vuelvo a elegir.",
+      "Eres mi pensamiento lindo antes de dormir.",
+      "Te extraño de una forma que no sé explicar.",
+      "Tú y yo tenemos algo que no quiero soltar.",
+      "Lo nuestro no es fácil, pero es real y es nuestro.",
+      "Gracias por quedarte incluso cuando la distancia pesa.",
+      "Tu abrazo pendiente es una de mis metas más bonitas.",
+      "Mi futuro se ve más bonito si estás tú en él.",
+      "No sé qué pase mañana, pero hoy sé que te amo demasiado.",
+      "Ojalá pudiera teletransportarme solo para abrazarte un ratito.",
+      "Eres, sin duda, una de las cosas más bonitas que me ha pasado."
+    ];
+
+    let fraseIndex = 0;
+    const phraseText = document.getElementById("phraseText");
+    const phraseCounter = document.getElementById("phraseCounter");
+    const nextPhraseBtn = document.getElementById("nextPhraseBtn");
+
+    function mostrarFrase() {
+      phraseText.classList.remove("show");
+      phraseText.classList.add("fade");
+
+      setTimeout(() => {
+        phraseText.textContent = frases[fraseIndex];
+        phraseCounter.textContent = `Frase ${fraseIndex + 1} de ${frases.length}`;
+        fraseIndex = (fraseIndex + 1) % frases.length;
+
+        phraseText.classList.remove("fade");
+        void phraseText.offsetWidth;
+        phraseText.classList.add("show");
+      }, 180);
+    }
+
+    nextPhraseBtn.addEventListener("click", mostrarFrase);
+  </script>
+</body>
+</html>
